@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Api from "../../services/Api";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
@@ -25,8 +25,6 @@ interface Filme {
   poster_path: string;
   vote_average: number;
 }
-
-
 
 function Lancamentos() {
   const [filmes, setFilmes] = useState<Filme[]>([]);
@@ -58,7 +56,10 @@ function Lancamentos() {
             <CarouselContent>
               {filmes.map((filme) => {
                 return (
-                  <CarouselItem key={filme.id} className="md:basis-1/2 lg:basis-1/3">
+                  <CarouselItem
+                    key={filme.id}
+                    className="md:basis-1/2 lg:basis-1/3"
+                  >
                     <Card>
                       <CardHeader className="flex items-center">
                         <img
