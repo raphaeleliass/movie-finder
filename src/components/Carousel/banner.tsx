@@ -23,7 +23,7 @@ function Banner() {
   const [filmes, setFilmes] = useState<Filme[]>([]);
   const navigate = useNavigate();
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true }),
+    Autoplay({ delay: 5000, stopOnInteraction: true }),
   );
 
   useEffect(() => {
