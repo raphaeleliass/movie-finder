@@ -13,18 +13,17 @@ function Header() {
           Movie Finder
           <FaSearch className="size-4" />
         </Link>
-        <nav>
-          <ul>
-            <li>
-              <Link to={"/favoritos"}>
-                <Button className="flex flex-row items-center gap-1">
-                  <FaRegHeart />
-                  Minha Lista
-                </Button>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+
+        <ul>
+          <li>
+            <Link to={"/favoritos"}>
+              <Button className="flex flex-row items-center gap-1">
+                <FaRegHeart />
+                <p className="hidden md:block">Filmes salvos</p>
+              </Button>
+            </Link>
+          </li>
+        </ul>
       </div>
     </header>
   );

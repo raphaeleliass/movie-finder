@@ -19,6 +19,7 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 import Title from "../ui/title";
+import { StarIcon } from "@radix-ui/react-icons";
 
 interface Filme {
   id: number;
@@ -68,33 +69,43 @@ function CarouselFilmes({ urlParam, carouselTitle }: FilmesProps) {
         ) : (
           <Carousel className="w-full max-w-xs md:max-w-3xl lg:max-w-6xl">
             <CarouselContent>
-              {filmes.map((filme) => {
+              {filmes.map((item) => {
                 return (
                   <CarouselItem
-                    key={filme.id}
+                    key={item.id}
                     className="md:basis-1/2 lg:basis-1/3"
                   >
                     <Card>
                       <CardHeader className="flex items-center">
-                        <Link to={`/filme/${filme.id}`}>
+                        <Link to={`/filme/${item.id}`}>
                           <img
                             className="w-full rounded-xl shadow"
-                            src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}
-                            alt={filme.title}
+                            src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                            alt={item.title}
                           />
                         </Link>
                       </CardHeader>
-                      <CardContent>
-                        <Link to={`/filme/${filme.id}`}>
-                          <CardTitle>{filme.title}</CardTitle>
+                      <CardContent className="flex flex-col items-center gap-2 text-center">
+                        <Link to={`/item/${item.id}`}>
+                          <CardTitle>{item.title}</CardTitle>
                         </Link>
-                        <CardDescription>
-                          {filme.vote_average.toFixed(1)}/10
+                        <CardDescription className="flex flex-row items-center gap-1">
+                          <StarIcon />
+                          {item.vote_average.toFixed(1)}/10
                         </CardDescription>
                       </CardContent>
-                      <CardFooter>
+                      <CardFooter className="flex flex-row justify-center gap-1">
                         <Button>
-                          <Link to={`/filme/${filme.id}`}>Ver mais</Link>
+                          <Link to={`/filme/${item.id}`}>Ver mais</Link>
+                        </Button>
+                        <Button variant={"destructive"}>
+                          <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href={`https://youtube.com/results?search_query=${item.title}+Trailer`}
+                          >
+                            Trailer
+                          </a>
                         </Button>
                       </CardFooter>
                     </Card>
