@@ -47,7 +47,7 @@ function CarouselFilmes({ urlParam, carouselTitle }: FilmesProps) {
           page: 1,
         },
       });
-      setFilmes(response.data.results.slice(0, 5));
+      setFilmes(response.data.results.slice(0, 10));
       setLoading(false);
     }
     getFilmes();
