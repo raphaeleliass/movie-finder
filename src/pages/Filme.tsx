@@ -133,8 +133,8 @@ function Filme() {
                 <Button onClick={salvarFilme}>Salvar</Button>
                 <Button variant={"destructive"}>
                   <a
-                    target="blank"
-                    rel="external"
+                    target="_blank"
+                    rel="noreferrer"
                     href={`https://youtube.com/results?search_query=${filme?.title}+Trailer`}
                   >
                     Trailer

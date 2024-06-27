@@ -10,7 +10,7 @@ function Tag({ text, className, ...props }: TagProps) {
     <p
       {...props}
       className={clsx(
-        "flex items-center justify-center rounded-full px-2 text-sm text-center ring-1 ring-slate-400 bg-slate-50",
+        "flex items-center text-xs justify-center rounded-full px-2 text-sm text-center ring-1 ring-slate-400 bg-slate-50",
         className,
       )}
     >

@@ -55,10 +55,12 @@ function CarouselFilmes({ urlParam, carouselTitle }: FilmesProps) {
   return (
     <section className="flex flex-col items-center justify-center space-y-4">
       <div className="flex w-full max-w-xs flex-row items-center justify-between md:max-w-3xl lg:max-w-6xl">
-        <Title className="border-l-4 border-l-red-500 pl-1">
+        <Title className="border-l-8 border-l-red-600 pl-2">
           {carouselTitle}
         </Title>
-        <Button variant={"secondary"}>Ver todos</Button>
+        <Button variant={"secondary"}>
+          <Link to={`/lista/${urlParam}`}>Ver lista</Link>
+        </Button>
       </div>
       <article className="flex flex-col items-center justify-center space-y-12">
         {loading ? (
