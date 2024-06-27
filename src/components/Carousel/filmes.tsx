@@ -18,6 +18,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import Title from "../ui/title";
 
 interface Filme {
   id: number;
@@ -26,7 +27,12 @@ interface Filme {
   vote_average: number;
 }
 
-function Lancamentos() {
+interface FilmesProps {
+  urlParam: string;
+  carouselTitle: string;
+}
+
+function CarouselFilmes({ urlParam, carouselTitle }: FilmesProps) {
   const [filmes, setFilmes] = useState<Filme[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -34,21 +40,27 @@ function Lancamentos() {
     const apiKey = import.meta.env.VITE_API_KEY;
 
     async function getFilmes() {
-      const response = await Api.get("movie/now_playing", {
+      const response = await Api.get(`movie/${urlParam}`, {
         params: {
           api_key: apiKey,
           language: "pt-BR",
           page: 1,
         },
       });
-      setFilmes(response.data.results.slice(0, 10));
+      setFilmes(response.data.results.slice(0, 5));
       setLoading(false);
     }
     getFilmes();
-  }, []);
+  }, [urlParam]);
   return (
-    <div className="flex items-center justify-center space-y-2">
-      <article className="flexflex-col items-center justify-center space-y-12">
+    <section className="flex flex-col items-center justify-center space-y-4">
+      <div className="flex w-full max-w-xs flex-row items-center justify-between md:max-w-3xl lg:max-w-6xl">
+        <Title className="border-l-4 border-l-red-500 pl-1">
+          {carouselTitle}
+        </Title>
+        <Button variant={"secondary"}>Ver todos</Button>
+      </div>
+      <article className="flex flex-col items-center justify-center space-y-12">
         {loading ? (
           <Loader />
         ) : (
@@ -62,14 +74,18 @@ function Lancamentos() {
                   >
                     <Card>
                       <CardHeader className="flex items-center">
-                        <img
-                          className="w-full rounded-xl shadow"
-                          src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}
-                          alt={filme.title}
-                        />
+                        <Link to={`/filme/${filme.id}`}>
+                          <img
+                            className="w-full rounded-xl shadow"
+                            src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}
+                            alt={filme.title}
+                          />
+                        </Link>
                       </CardHeader>
                       <CardContent>
-                        <CardTitle>{filme.title}</CardTitle>
+                        <Link to={`/filme/${filme.id}`}>
+                          <CardTitle>{filme.title}</CardTitle>
+                        </Link>
                         <CardDescription>
                           {filme.vote_average.toFixed(1)}/10
                         </CardDescription>
@@ -89,8 +105,8 @@ function Lancamentos() {
           </Carousel>
         )}
       </article>
-    </div>
+    </section>
   );
 }
 
-export default Lancamentos;
+export default CarouselFilmes;

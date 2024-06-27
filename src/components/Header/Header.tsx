@@ -1,11 +1,16 @@
+import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="flex flex-row items-center justify-center bg-white text-red-500">
+    <header className="flex flex-row items-center justify-center bg-white">
       <div className="flex w-full max-w-xs flex-row items-center justify-between py-4 md:max-w-3xl lg:max-w-6xl">
-        <Link to={"/"} className="text-2xl font-bold">
+        <Link
+          to={"/"}
+          className="flex flex-row items-center gap-1 font-Poppins text-2xl font-bold"
+        >
           Movie Finder
+          <FaSearch className="size-4" />
         </Link>
         <nav>
           <ul>

@@ -6,7 +6,7 @@ import Tag from "../components/ui/tag";
 import { Button } from "../components/ui/button";
 import Title from "../components/ui/title";
 import { StarIcon } from "@radix-ui/react-icons";
-import Lancamentos from "../components/Carousel/lancamentos";
+import CarouselFilmes from "../components/Carousel/filmes";
 import { toast } from "react-toastify";
 
 interface Genre {
@@ -70,7 +70,7 @@ function Filme() {
     }
 
     const hasFilme = filmesSalvos.some(
-      (filmeSalvo) => filmeSalvo.id === filme?.id
+      (filmeSalvo) => filmeSalvo.id === filme?.id,
     );
 
     if (hasFilme) {
@@ -145,9 +145,8 @@ function Filme() {
           </div>
         </section>
       )}
-      <div className="flex flex-col space-y-4">
-        <Title>Confira os lançamentos</Title>
-        <Lancamentos key={1} />
+      <div className="">
+        <CarouselFilmes key={1} urlParam="popular" carouselTitle="Populares" />
       </div>
     </section>
   );
